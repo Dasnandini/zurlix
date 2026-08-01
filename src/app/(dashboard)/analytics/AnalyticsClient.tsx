@@ -121,8 +121,7 @@ export default function AnalyticsClient() {
       {/* Grid: Charts */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         
-        {/* Clicks Over Time (Line Chart) */}
-        <div className="lg:col-span-8 rounded-2xl border border-slate-150 bg-white p-5 shadow-xs">
+        <div className="lg:col-span-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-sm font-bold text-slate-800">Clicks Over Time</h3>
@@ -158,7 +157,7 @@ export default function AnalyticsClient() {
         </div>
 
         {/* Top Links */}
-        <div className="lg:col-span-4 rounded-2xl border border-slate-150 bg-white p-5 shadow-xs">
+        <div className="lg:col-span-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
           <div>
             <h3 className="text-sm font-bold text-slate-800">Top Performing Links</h3>
             <p className="text-[10px] text-slate-400 font-medium mb-4">Short links with the highest engagement</p>
@@ -205,7 +204,7 @@ export default function AnalyticsClient() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         
         {/* Device Breakdown */}
-        <div className="rounded-2xl border border-slate-150 bg-white p-5 shadow-xs">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
           <div>
             <h3 className="text-sm font-bold text-slate-800">Device Breakdown</h3>
             <p className="text-[10px] text-slate-400 font-medium mb-2">Visitor distributions by device platform</p>
@@ -251,7 +250,7 @@ export default function AnalyticsClient() {
         </div>
 
         {/* Browser Breakdown */}
-        <div className="rounded-2xl border border-slate-150 bg-white p-5 shadow-xs">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
           <div>
             <h3 className="text-sm font-bold text-slate-800">Browser Breakdown</h3>
             <p className="text-[10px] text-slate-400 font-medium mb-2">Traffic share across major browsers</p>
@@ -299,13 +298,13 @@ export default function AnalyticsClient() {
       </div>
 
       {/* Recent Click Activity */}
-      <div className="rounded-2xl border border-slate-150 bg-white p-5 shadow-xs">
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
         <div>
           <h3 className="text-sm font-bold text-slate-800">Recent Click Activity</h3>
           <p className="text-[10px] text-slate-400 font-medium mb-4">Real-time listing of visitor logs</p>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border">
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="border-b bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-wider">

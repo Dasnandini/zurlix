@@ -8,7 +8,7 @@ export default function SidebarHeader() {
   const { openModal } = useCreateLinkModal();
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col items-center justify-center w-full">
       <Image
         src={logo}
         alt="Logo"

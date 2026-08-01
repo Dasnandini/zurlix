@@ -24,20 +24,15 @@ export default function SettingsClient({ user }: { user: User }) {
   const [profileSuccess, setProfileSuccess] = useState(false);
   const [profileError, setProfileError] = useState("");
 
-  // Theme Switcher State
   const [darkMode, setDarkMode] = useState(false);
 
-  // Expiry Preference State
   const [defaultExpiry, setDefaultExpiry] = useState("never");
 
-  // Load preferences from localStorage/document root on mount
   useEffect(() => {
-    // Dark mode loading
     const isDark = document.documentElement.classList.contains("dark") || 
                    localStorage.getItem("theme") === "dark";
     setDarkMode(isDark);
 
-    // Default expiry loading
     const expiry = localStorage.getItem("defaultLinkExpiry") || "never";
     setDefaultExpiry(expiry);
   }, []);
@@ -105,13 +100,11 @@ export default function SettingsClient({ user }: { user: User }) {
     }
   };
 
-  // Check connected accounts
   const isGoogleConnected = user.accounts.some((acc) => acc.provider === "google");
   const isGithubConnected = user.accounts.some((acc) => acc.provider === "github");
 
   return (
     <div className="space-y-6 max-w-3xl">
-      {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-800 tracking-tight">Settings</h1>
         <p className="text-xs text-slate-400 mt-0.5 font-medium">
@@ -119,8 +112,7 @@ export default function SettingsClient({ user }: { user: User }) {
         </p>
       </div>
 
-      {/* Profile Settings */}
-      <div className="rounded-2xl border border-slate-150 bg-white p-6 shadow-xs">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
         <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-1">
           <UserIcon className="h-4 w-4 text-slate-400" /> User Profile
         </h3>
@@ -173,16 +165,14 @@ export default function SettingsClient({ user }: { user: User }) {
         </form>
       </div>
 
-      {/* Connected Accounts */}
-      <div className="rounded-2xl border border-slate-150 bg-white p-6 shadow-xs">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
         <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-1">
           <GithubIcon className="h-4 w-4 text-slate-400" /> Connected Accounts
         </h3>
         <p className="text-[10px] text-slate-400 font-medium mb-5">View and manage third-party login providers</p>
 
         <div className="space-y-3">
-          {/* Google Connection */}
-          <div className="flex items-center justify-between p-3 rounded-xl border bg-slate-50/50">
+          <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50/50">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border">
                 <svg className="h-4 w-4" viewBox="0 0 24 24">
@@ -220,8 +210,7 @@ export default function SettingsClient({ user }: { user: User }) {
             )}
           </div>
 
-          {/* GitHub Connection */}
-          <div className="flex items-center justify-between p-3 rounded-xl border bg-slate-50/50">
+          <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50/50">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border">
                 <GithubIcon className="h-4 w-4 text-slate-800" />
@@ -244,18 +233,16 @@ export default function SettingsClient({ user }: { user: User }) {
         </div>
       </div>
 
-      {/* Configurations: Theme & Expiry */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        {/* Theme Switcher */}
-        <div className="rounded-2xl border border-slate-150 bg-white p-6 shadow-xs">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
           <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-1">
             {darkMode ? <Moon className="h-4 w-4 text-[#0f8f9e]" /> : <Sun className="h-4 w-4 text-[#0f8f9e]" />}
             Theme Preference
           </h3>
           <p className="text-[10px] text-slate-400 font-medium mb-5">Switch between light and dark display modes</p>
 
-          <div className="flex items-center justify-between p-3 rounded-xl border bg-slate-50/50">
+          <div className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50/50">
             <span className="text-xs font-semibold text-slate-600">Dark Mode</span>
             <label className="relative inline-flex cursor-pointer items-center">
               <input
@@ -269,8 +256,7 @@ export default function SettingsClient({ user }: { user: User }) {
           </div>
         </div>
 
-        {/* Default Link Expiry */}
-        <div className="rounded-2xl border border-slate-150 bg-white p-6 shadow-xs">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
           <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-1">
             <Calendar className="h-4 w-4 text-slate-400" /> Default Link Expiry
           </h3>
@@ -279,7 +265,7 @@ export default function SettingsClient({ user }: { user: User }) {
           <select
             value={defaultExpiry}
             onChange={(e) => handleExpiryChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs font-semibold text-slate-600 outline-none focus:border-[#0f8f9e]"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs font-semibold text-slate-600 outline-none "
           >
             <option value="never">Never (Permanent links)</option>
             <option value="7">7 Days</option>
@@ -290,8 +276,7 @@ export default function SettingsClient({ user }: { user: User }) {
 
       </div>
 
-      {/* Delete Account */}
-      <div className="rounded-2xl border border-rose-150 bg-rose-50/20 p-6">
+      <div className="rounded-2xl border border-slate-200 bg-rose-50/20 p-6">
         <h3 className="text-sm font-bold text-rose-600 flex items-center gap-2 mb-1">
           <AlertTriangle className="h-4 w-4 text-rose-500 animate-pulse" /> Danger Zone
         </h3>

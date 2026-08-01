@@ -24,12 +24,12 @@ interface LinkData {
   updatedAt: string;
 }
 
-interface StatsCounts {
-  totalLinks: number;
-  activeLinks: number;
-  expiredLinks: number; // calculated or passed
-  protectedLinks: number; // calculated or passed
-}
+// interface StatsCounts {
+//   totalLinks: number;
+//   activeLinks: number;
+//   expiredLinks: number; 
+//   protectedLinks: number; 
+// }
 
 interface Props {
   refreshTrigger?: number;
@@ -69,22 +69,18 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
   const [editError, setEditError] = useState("");
   const [editLoading, setEditLoading] = useState(false);
 
-  // Copy feedbacks
   const [copiedLinkIds, setCopiedLinkIds] = useState<Record<string, boolean>>({});
 
-  // Trigger statistics & links list loading
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        // Fetch stats first
         const statsRes = await fetch("/api/analytics/stats");
         if (statsRes.ok) {
           const statsData = await statsRes.json();
           setStats(statsData);
         }
 
-        // Fetch links
         const params = new URLSearchParams({
           search,
           status: activeTab,
@@ -136,7 +132,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
     }
   };
 
-  // Open Edit Modal and initialize state
   const startEditing = (link: LinkData) => {
     setEditingLink(link);
     setEditUrl(link.originalUrl);
@@ -260,7 +255,7 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                 className={`rounded-xl px-4 py-2.5 text-xs font-bold transition ${
                   isActive 
                     ? "bg-[#0f8f9e] text-white shadow-xs" 
-                    : "border bg-white text-slate-500 hover:bg-slate-55"
+                    : "border border-slate-200 bg-white text-slate-500 hover:bg-slate-55"
                 }`}
               >
                 {tab.label} {displayCount ? <span className={`ml-1 font-semibold ${isActive ? "text-teal-100" : "text-slate-400"}`}>{displayCount}</span> : ""}
@@ -303,7 +298,7 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
       </div>
 
       {/* Links List Table */}
-      <div className="overflow-hidden rounded-2xl border border-slate-150 bg-white shadow-xs">
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -349,7 +344,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                   return (
                     <React.Fragment key={link.id}>
                       <tr className={`hover:bg-slate-50/50 transition-colors ${isExpanded ? "bg-slate-50/20" : ""}`}>
-                        {/* Expander Icon */}
                         <td className="px-4 py-4 text-center">
                           <button 
                             onClick={() => toggleRow(link.id)} 
@@ -359,7 +353,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                           </button>
                         </td>
 
-                        {/* Short link with copy/lock */}
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-1.5 font-bold text-[#0f8f9e]">
                             {link.passwordHash && <Lock className="h-3 w-3 text-slate-400" />}
@@ -373,7 +366,7 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                           </div>
                         </td>
 
-                        {/* Original URL */}
+                     
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-1.5 text-slate-400">
                             {link.favicon && (
@@ -396,27 +389,22 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                           </div>
                         </td>
 
-                        {/* Clicks */}
                         <td className="px-4 py-4 text-center font-semibold text-slate-700">
                           {link.clicks.toLocaleString()}
                         </td>
 
-                        {/* Created Date */}
                         <td className="px-4 py-4 text-slate-400">
                           {format(new Date(link.createdAt), "MMM d, yyyy")}
                         </td>
 
-                        {/* Expiry Date */}
                         <td className="px-4 py-4 text-slate-400">
                           {link.expiresAt ? format(new Date(link.expiresAt), "MMM d, yyyy") : "-"}
                         </td>
 
-                        {/* Status */}
                         <td className="px-4 py-4">
                           {getStatusBadge(link)}
                         </td>
 
-                        {/* Actions */}
                         <td className="px-4 py-4 text-right">
                           <div className="flex items-center justify-end gap-1.5">
                             <button 
@@ -460,7 +448,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
                         </td>
                       </tr>
 
-                      {/* Expanded Section */}
                       {isExpanded && (
                         <tr className="bg-slate-50/30">
                           <td colSpan={8} className="px-6 py-4 border-t border-b">
@@ -494,7 +481,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
           </table>
         </div>
 
-        {/* Table Footer / Pagination */}
         {!loading && links.length > 0 && (
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t bg-slate-50/50 px-6 py-4">
             <span className="text-xs text-slate-400 font-semibold">
@@ -542,7 +528,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
         )}
       </div>
 
-      {/* QR CODE OVERLAY MODAL */}
       {qrCodeModalLink && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4">
           <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl text-center border">
@@ -570,7 +555,6 @@ export default function RecentLinks({ refreshTrigger = 0, onRefreshNeeded, showC
         </div>
       )}
 
-      {/* EDIT MODAL OVERLAY */}
       {editingLink && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4">
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border">

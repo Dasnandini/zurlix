@@ -111,13 +111,10 @@ export default function CreateLinkCard({ onLinkCreated }: Props) {
   };
 
   return (
-    <div className="rounded-2xl border border-slate-150 bg-white p-6 shadow-xs transition duration-300">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs transition duration-300">
       
       {/* Title */}
       <div className="flex items-center gap-2 mb-1">
-        <div className="flex h-5 w-5 items-center justify-center text-[#0f8f9e]">
-          <SparkleIcon className="h-5 w-5" />
-        </div>
         <h2 className="text-base font-bold text-slate-800">Create Short Link</h2>
       </div>
       <p className="text-xs text-slate-400 mb-5">Quickly shorten a long URL and start sharing.</p>
@@ -275,7 +272,7 @@ export default function CreateLinkCard({ onLinkCreated }: Props) {
           )}
 
           {/* Form Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-300">
             <button
               type="button"
               onClick={handleClear}

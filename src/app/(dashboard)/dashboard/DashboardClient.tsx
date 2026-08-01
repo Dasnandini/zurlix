@@ -31,7 +31,7 @@ export default function DashboardClient({ user }: { user: User }) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
-            Welcome back, {user.name || "User"} 👋
+            Welcome back, {user.name || "User"} 
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
             Create, manage, and track all your short links from one place.
@@ -45,17 +45,26 @@ export default function DashboardClient({ user }: { user: User }) {
         </button>
       </div>
 
-      {/* Stats Cards */}
-      <StatsCards refreshTrigger={refreshTrigger} />
 
-      {/* Inline Create Form */}
+
+      <div className="flex gap-10">
+       <div className="w-[80%] flex flex-col gap-5">
       <CreateLinkCard onLinkCreated={handleRefresh} />
-
-      {/* Links List Table */}
       <RecentLinks
         refreshTrigger={refreshTrigger}
         onRefreshNeeded={handleRefresh}
       />
+        </div>
+        <div className="w-[20%] ">
+        <StatsCards refreshTrigger={refreshTrigger} />
+        </div>
+
+
+      </div>
+
+      {/* Stats Cards */}
+
+
     </div>
   );
 }

@@ -41,9 +41,9 @@ export default function StatsCards({ refreshTrigger = 0 }: Props) {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex flex-col gap-5">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-32 w-full animate-pulse rounded-2xl border bg-white p-5">
+          <div key={i} className="h-32 w-full animate-pulse rounded-2xl border border-slate-200 bg-white p-5">
             <div className="flex justify-between">
               <div className="h-10 w-10 rounded-full bg-slate-100"></div>
               <div className="h-4 w-8 rounded-md bg-slate-100"></div>
@@ -61,49 +61,37 @@ export default function StatsCards({ refreshTrigger = 0 }: Props) {
       title: "Total Links",
       value: stats?.totalLinks.toLocaleString() ?? "0",
       trend: stats?.totalLinksTrend ?? "+0%",
-      icon: Link2,
       bgIcon: "bg-teal-50 text-[#0f8f9e]",
     },
     {
       title: "Total Clicks",
       value: stats?.totalClicks.toLocaleString() ?? "0",
       trend: stats?.totalClicksTrend ?? "+0%",
-      icon: MousePointerClick,
       bgIcon: "bg-blue-50 text-blue-500",
     },
     {
       title: "Active Links",
       value: stats?.activeLinks.toLocaleString() ?? "0",
       trend: stats?.activeLinksTrend ?? "+0%",
-      icon: ShieldCheck,
       bgIcon: "bg-emerald-50 text-emerald-500",
     },
     {
       title: "Average CTR",
       value: `${stats?.averageCtr ?? "0"}%`,
       trend: stats?.averageCtrTrend ?? "+0%",
-      icon: BarChart3,
       bgIcon: "bg-indigo-50 text-indigo-500",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="flex flex-col gap-5">
       {items.map((item, index) => {
         const isUp = item.trend.startsWith("+") || parseFloat(item.trend) > 0;
         const displayTrend = item.trend.replace("+", "").replace("-", "");
         return (
-          <div key={index} className="rounded-2xl border border-slate-150 bg-white p-5 shadow-xs transition hover:shadow-md duration-300">
-            <div className="flex items-center justify-between">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${item.bgIcon}`}>
-                <item.icon className="h-5 w-5" />
-              </div>
-              <button className="text-slate-400 hover:text-slate-600 transition p-1 rounded-lg">
-                <MoreHorizontal className="h-4 w-4" />
-              </button>
-            </div>
+          <div key={index} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs transition hover:shadow-md duration-300">
             
-            <div className="mt-4">
+            <div className="">
               <span className="text-xs font-semibold text-slate-400">{item.title}</span>
               <h3 className="text-2xl font-bold text-slate-800 tracking-tight mt-0.5">{item.value}</h3>
             </div>

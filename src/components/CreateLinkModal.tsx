@@ -186,7 +186,7 @@ export default function CreateLinkModal() {
                 <Link2 className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="https://example.com/very-long-url"
+                  placeholder="https://example.com"
                   value={originalUrl}
                   onChange={(e) => setOriginalUrl(e.target.value)}
                   className="w-full rounded-xl border border-slate-200 bg-slate-55 pl-10 pr-4 py-3 text-sm outline-none transition focus:border-[#0f8f9e] focus:ring-1 focus:ring-[#0f8f9e]"
@@ -232,7 +232,7 @@ export default function CreateLinkModal() {
 
               <div className="space-y-1.5">
                 <label className="text-sm font-semibold text-slate-700">Password Protection</label>
-                <div className="flex items-center justify-between rounded-xl border bg-slate-50/50 p-3 h-[46px]">
+                <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/50 p-3 h-[46px]">
                   <span className="text-xs text-slate-500 font-medium">Require a password</span>
                   <label className="relative inline-flex cursor-pointer items-center">
                     <input
@@ -273,7 +273,7 @@ export default function CreateLinkModal() {
             )}
 
             {/* Generate QR Code toggle */}
-            <div className="flex items-center justify-between rounded-xl border bg-slate-50/50 p-3.5">
+            <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/50 p-3.5">
               <div className="flex items-center gap-2">
                 <QrCode className="h-4 w-4 text-slate-400" />
                 <span className="text-sm font-semibold text-slate-700">Generate QR Code</span>
@@ -294,7 +294,7 @@ export default function CreateLinkModal() {
               <button
                 type="button"
                 onClick={handleClear}
-                className="w-1/3 rounded-xl border py-3 text-sm font-medium text-slate-500 hover:bg-slate-50 transition"
+                className="w-1/3 rounded-xl border border-slate-200 py-3 text-sm font-medium text-slate-500 hover:bg-slate-50 transition"
               >
                 Clear
               </button>
